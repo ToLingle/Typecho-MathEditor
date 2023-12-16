@@ -1,10 +1,10 @@
 <?php
 /**
- * 集成LaTeX公式编辑工具
+ * 针对默认编辑器的辅助插件,增加数学公式编辑按钮
  *
  * @package MathEditor
  * @author doge24190
- * @version 0.2
+ * @version 0.3
  * @link http://www.doge24190.top
  */
 class MathEditor_Plugin implements Typecho_Plugin_Interface
@@ -13,7 +13,7 @@ class MathEditor_Plugin implements Typecho_Plugin_Interface
      * 插件版本号
      * @var string
      */
-    const _VERSION = '0.2';
+    const _VERSION = '0.3';
     /**
      * 激活插件方法,如果激活失败,直接抛出异常
      *
@@ -35,13 +35,52 @@ public static function button(){
 }</style>
 		<script> 
           $(document).ready(function(){
-          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-jrotty-button" title="公式编辑器"><span style="background: none;font-size: large;text-align: center;color: #999999;font-family: serif;">0</span></li>');
+          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-matheditor-button" title="公式编辑器"><span style="background: none;font-size: large;text-align: center;color: #999999;font-family: serif;">0</span></li>');
 				if($('#wmd-button-row').length !== 0){
-					$('#wmd-jrotty-button').click(function(){
-						window.open('/usr/plugins/MathEditor/editor', '_blank');
+					$('#wmd-matheditor-button').click(function(){
+					    const windowFeatures = "left=1000,top=200,width=420,height=280";
+						window.open('/usr/plugins/MathEditor/editor', '_blank',windowFeatures,);
 					})
 				}
 
+            $('#wmd-button-row').append('<li class="wmd-button" id="wmd-TeX-button" title="TeX代码"><span style="background: none;font-size: 16px;text-align: center;color: #999999;font-family: serif;">tex</span></li>');
+				if($('#wmd-button-row').length !== 0){
+					$('#wmd-TeX-button').click(function(){
+						var rs = "$$\nyour TeX code\n$$\n";
+						TeX(rs);
+					})
+				}
+
+
+				function TeX(tag) {
+					var myField;
+					if (document.getElementById('text') && document.getElementById('text').type == 'textarea') {
+						myField = document.getElementById('text');
+					} else {
+						return false;
+					}
+					if (document.selection) {
+						myField.focus();
+						sel = document.selection.createRange();
+						sel.text = tag;
+						myField.focus();
+					}
+					else if (myField.selectionStart || myField.selectionStart == '0') {
+						var startPos = myField.selectionStart;
+						var endPos = myField.selectionEnd;
+						var cursorPos = startPos;
+						myField.value = myField.value.substring(0, startPos)
+						+ tag
+						+ myField.value.substring(endPos, myField.value.length);
+						cursorPos += tag.length;
+						myField.focus();
+						myField.selectionStart = cursorPos;
+						myField.selectionEnd = cursorPos;
+					} else {
+						myField.value += tag;
+						myField.focus();
+					}
+				}
 			});
 </script>
 <?php
