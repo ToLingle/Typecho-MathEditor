@@ -1,6 +1,6 @@
 <?php
 /**
- * 针对默认编辑器的辅助插件,增加数学公式编辑按钮
+ * 集成LaTeX公式编辑工具
  *
  * @package MathEditor
  * @author doge24190
