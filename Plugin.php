@@ -4,7 +4,7 @@
  *
  * @package MathEditor
  * @author doge24190
- * @version 0.3
+ * @version 0.3.1
  * @link http://www.doge24190.top
  */
 class MathEditor_Plugin implements Typecho_Plugin_Interface
@@ -13,7 +13,7 @@ class MathEditor_Plugin implements Typecho_Plugin_Interface
      * 插件版本号
      * @var string
      */
-    const _VERSION = '0.3';
+    const _VERSION = '0.3.1';
     /**
      * 激活插件方法,如果激活失败,直接抛出异常
      *
@@ -51,36 +51,6 @@ public static function button(){
 					})
 				}
 
-
-				function TeX(tag) {
-					var myField;
-					if (document.getElementById('text') && document.getElementById('text').type == 'textarea') {
-						myField = document.getElementById('text');
-					} else {
-						return false;
-					}
-					if (document.selection) {
-						myField.focus();
-						sel = document.selection.createRange();
-						sel.text = tag;
-						myField.focus();
-					}
-					else if (myField.selectionStart || myField.selectionStart == '0') {
-						var startPos = myField.selectionStart;
-						var endPos = myField.selectionEnd;
-						var cursorPos = startPos;
-						myField.value = myField.value.substring(0, startPos)
-						+ tag
-						+ myField.value.substring(endPos, myField.value.length);
-						cursorPos += tag.length;
-						myField.focus();
-						myField.selectionStart = cursorPos;
-						myField.selectionEnd = cursorPos;
-					} else {
-						myField.value += tag;
-						myField.focus();
-					}
-				}
 			});
 </script>
 <?php
@@ -123,16 +93,16 @@ public static function button(){
      */
     public static function footer() {
     echo '<script>
-    MathEditor_Plugin = {
+    MathJax = {
         tex:{
             inlineMath: [["$", "$"]],
             displayMath: [["$$", "$$"]],
         },
         svg: {
             fontCache: "global",
-    };
             scale: 1.0,
         }
+    };
     </script>
     <script type="text/javascript" id="MathJax-script" async
         src="/usr/plugins/MathEditor/MathJax/tex-svg.js">
