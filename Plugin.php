@@ -4,7 +4,7 @@
  *
  * @package MathEditor
  * @author doge24190
- * @version 0.4
+ * @version 0.4.1
  * @link http://www.doge24190.top
  */
 class MathEditor_Plugin implements Typecho_Plugin_Interface
@@ -13,7 +13,7 @@ class MathEditor_Plugin implements Typecho_Plugin_Interface
      * 插件版本号
      * @var string
      */
-    const _VERSION = '0.4';
+    const _VERSION = '0.4.1';
     /**
      * 激活插件方法,如果激活失败,直接抛出异常
      *
@@ -35,7 +35,7 @@ public static function button(){
 }</style>
 		<script> 
           $(document).ready(function(){
-          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-matheditor-button" title="公式编辑器"><span style="background: none;font-size: large;text-align: center;color: #999999;font-family: serif;">0</span></li>');
+          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-matheditor-button" title="公式编辑器"><span style="background: none;font-size: large;text-align: center;color: #999999;font-family: serif;">tex</span></li>');
 				if($('#wmd-button-row').length !== 0){
 					$('#wmd-matheditor-button').click(function(){
 					    const windowFeatures = "left=1000,top=200,width=420,height=280";
