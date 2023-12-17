@@ -13,11 +13,11 @@ An integration with LaTeX formula editor for Typecho
 ```注意解压到此目录下：/usr/plugins/```
 
 2. 启用插件，在```Typecho```的后台管理中启用插件。
-![点击启用插件](image.png)
+![点击启用插件](/image/image.png)
 点击启用插件
-![成功启用插件](image-1.png)
+![成功启用插件](/image/image-1.png)
 3. 成功启用插件之后，进入文章编辑界面，可以看到新增的按钮
-![Alt text](<(}JNC715`ZEY(54XFN7SH[V.png>)
+![Alt text](/image/<(}JNC715`ZEY(54XFN7SH[V.png>)
 - tex按钮即为调用```Mathquill```作为辅助编辑
 - dis按钮即为创建行间公式环境
 - in按钮即为创建行内公式环境
