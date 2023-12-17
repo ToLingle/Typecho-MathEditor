@@ -4,7 +4,7 @@
  *
  * @package MathEditor
  * @author doge24190
- * @version 0.3.1
+ * @version 0.4
  * @link http://www.doge24190.top
  */
 class MathEditor_Plugin implements Typecho_Plugin_Interface
@@ -13,7 +13,7 @@ class MathEditor_Plugin implements Typecho_Plugin_Interface
      * 插件版本号
      * @var string
      */
-    const _VERSION = '0.3.1';
+    const _VERSION = '0.4';
     /**
      * 激活插件方法,如果激活失败,直接抛出异常
      *
@@ -43,14 +43,50 @@ public static function button(){
 					})
 				}
 
-            $('#wmd-button-row').append('<li class="wmd-button" id="wmd-TeX-button" title="TeX代码"><span style="background: none;font-size: 16px;text-align: center;color: #999999;font-family: serif;">tex</span></li>');
+            $('#wmd-button-row').append('<li class="wmd-button" id="wmd-dis-button" title="TeX行间代码"><span style="background: none;font-size: 16px;text-align: center;color: #999999;font-family: serif;">dis</span></li>');
 				if($('#wmd-button-row').length !== 0){
-					$('#wmd-TeX-button').click(function(){
+					$('#wmd-dis-button').click(function(){
 						var rs = "$$\nyour TeX code\n$$\n";
-						TeX(rs);
+                        TeX(rs);
+					})
+				}
+            $('#wmd-button-row').append('<li class="wmd-button" id="wmd-in-button" title="TeX行内代码"><span style="background: none;font-size: 16px;text-align: center;color: #999999;font-family: serif;">in</span></li>');
+				if($('#wmd-button-row').length !== 0){
+					$('#wmd-in-button').click(function(){
+						var ss = "$ your TeX code $";
+                        TeX(ss);
 					})
 				}
 
+            function TeX(tag) {
+					var myField;
+					if (document.getElementById('text') && document.getElementById('text').type == 'textarea') {
+						myField = document.getElementById('text');
+					} else {
+						return false;
+					}
+					if (document.selection) {
+						myField.focus();
+						sel = document.selection.createRange();
+						sel.text = tag;
+						myField.focus();
+					}
+					else if (myField.selectionStart || myField.selectionStart == '0') {
+						var startPos = myField.selectionStart;
+						var endPos = myField.selectionEnd;
+						var cursorPos = startPos;
+						myField.value = myField.value.substring(0, startPos)
+						+ tag
+						+ myField.value.substring(endPos, myField.value.length);
+						cursorPos += tag.length;
+						myField.focus();
+						myField.selectionStart = cursorPos;
+						myField.selectionEnd = cursorPos;
+					} else {
+						myField.value += tag;
+						myField.focus();
+					}
+				}
 			});
 </script>
 <?php
