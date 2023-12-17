@@ -17,7 +17,7 @@ An integration with LaTeX formula editor for Typecho
 点击启用插件
 ![成功启用插件](/image/image-1.png)
 3. 成功启用插件之后，进入文章编辑界面，可以看到新增的按钮
-![Alt text](/image/<(}JNC715`ZEY(54XFN7SH[V.png>)
+![Alt text](/image/image-3.png)
 - tex按钮即为调用```Mathquill```作为辅助编辑
 - dis按钮即为创建行间公式环境
 - in按钮即为创建行内公式环境
