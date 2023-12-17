@@ -35,7 +35,7 @@ public static function button(){
 }</style>
 		<script> 
           $(document).ready(function(){
-          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-matheditor-button" title="公式编辑器"><span style="background: none;font-size: large;text-align: center;color: #999999;font-family: serif;">tex</span></li>');
+          	$('#wmd-button-row').append('<li class="wmd-button" id="wmd-matheditor-button" title="公式编辑器"><span style="background: none;font-size: 16px;text-align: center;color: #999999;font-family: serif;">tex</span></li>');
 				if($('#wmd-button-row').length !== 0){
 					$('#wmd-matheditor-button').click(function(){
 					    const windowFeatures = "left=1000,top=200,width=420,height=280";
