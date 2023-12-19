@@ -4,7 +4,7 @@
  *
  * @package MathEditor
  * @author doge24190
- * @version 0.4.1
+ * @version 0.4.2
  * @link http://www.doge24190.top
  */
 class MathEditor_Plugin implements Typecho_Plugin_Interface
@@ -13,7 +13,7 @@ class MathEditor_Plugin implements Typecho_Plugin_Interface
      * 插件版本号
      * @var string
      */
-    const _VERSION = '0.4.1';
+    const _VERSION = '0.4.2';
     /**
      * 激活插件方法,如果激活失败,直接抛出异常
      *
